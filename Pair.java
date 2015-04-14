@@ -17,43 +17,29 @@
  */
 package backtype.storm.scheduler;
 
-import java.util.Map;
-import java.util.Set;
+public class Pair<L,R> {
 
-public interface SchedulerAssignment {
-    /**
-     * Does this slot occupied by this assignment?
-     * @param slot
-     * @return
-     */
-    public boolean isSlotOccupied(WorkerSlot slot);
+	private L _key;
+	private R _value;
 
-    /**
-     * is the executor assigned?
-     * 
-     * @param executor
-     * @return
-     */
-    public boolean isExecutorAssigned(ExecutorDetails executor);
-    
-    /**
-     * get the topology-id this assignment is for.
-     * @return
-     */
-    public String getTopologyId();
+	public Pair<L,R>(L key,R value) {
+		_key = key;
+		_value = value;
+	}
 
-    /**
-     * get the executor -> slot map.
-     * @return
-     */
-    public Map<ExecutorDetails, WorkerSlot> getExecutorToSlot();
+	public L getKey() {
+		return _key;
+	}
+	public R getValue() {
+		return _value;
+	}
 
-    /**
-     * Return the executors covered by this assignments
-     * @return
-     */
-    public Set<ExecutorDetails> getExecutors();
-    
-    public Set<WorkerSlot> getSlots();
+	public void update(L key, R value) {
+		_key = key;
+		_value = value;
+	}
+	public void updateKey(L key) { _key = key;}
+	public void updateValue(R value) {_value = value;}
 }
+
 
