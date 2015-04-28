@@ -44,6 +44,8 @@ public class SAAlgorithm {
 
 	private Cluster _cluster;
 	private TopologyDetails _topologyDetail;
+	private final double INITAL_TEMP = 0.8;
+	private final int MAX_STEP = 10;
 
 	public void SAAlgorithm(Cluster cluster, TopologyDetails topologyDetail) {
 		_cluster = new Cluster();
@@ -57,24 +59,48 @@ public class SAAlgorithm {
 
 	private void run() {
 
-		float bestUtil = 0;
-		
+		double bestUtil = 0;
+		Map<ExecutorDetails, WorkerSlot> bestAssignment = new HashMap<ExecutorDetails, WorkerSlot>();
+		for(int i = 0; i < 5; ++i) {
+			double temp = INITIAL_TEMP;
+			Map<ExecutorDetails, WorkerSlot> currAssignment = new HashMap<ExecutorDetails, WorkerSlot>();
+			currAssignment = initApp();		
+			double currUtil = 0;
+			
+			for(int k = 0; k < MAX_STEP; ++k) {
+				Map<ExecutorDetails, WorkerSlot> newState = new HashMap<ExecutorDetails, WorkerSlot>();
+				newState = genStateApp();
+				double newUtil = computeUtil();
+				double r = Math.random();
+				
+				
+			}
+
+		}
 
 	}
 
-	private ____  initApp() {
+	private Map<ExecutorDetails, WorkerSlot> initApp() {
 
 	}
 
-	private ____ genStateApp() {
-
+	private Map<ExecutorDetails, WorkerSlot> genStateApp() {
+	
 	}
 	
 	private ____ initNetwork() {
 
 	}
 
-	private ___ genStateNetwork (){
+	private ___ genStateNetwork () {
+
+	}
+
+	private double computeUtil() {
+
+	}
+
+	private double transition() {
 
 	}
 
