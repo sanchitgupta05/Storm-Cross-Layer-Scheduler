@@ -22,7 +22,7 @@ public class Pair<L,R> {
 	private L _key;
 	private R _value;
 
-	public Pair<L,R>(L key,R value) {
+	public Pair(L key,R value) {
 		_key = key;
 		_value = value;
 	}
@@ -38,8 +38,8 @@ public class Pair<L,R> {
 		_key = key;
 		_value = value;
 	}
-	public void updateKey(L key) { _key = key;}
-	public void updateValue(R value) {_value = value;}
+	public void updateKey(L key) { _key = key; }
+	public void updateValue(R value) { _value = value; }
 }
 
 

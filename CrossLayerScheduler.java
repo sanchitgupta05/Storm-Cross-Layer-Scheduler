@@ -37,6 +37,8 @@ import backtype.storm.scheduler.Cluster;
 import backtype.storm.scheduler.SupervisorDetails;
 import backtype.storm.scheduler.EvenScheduler;
 import backtype.storm.scheduler.SAAlgorithm;
+import backtype.storm.scheduler.Pair;
+
 
 public class CrossLayerScheduler implements IScheduler {
 

@@ -25,7 +25,7 @@ import java.util.List;
 import java.util.Map;
 import java.util.Set;
 
-import java.lang.math;
+import java.lang.Math;
 
 import org.apache.log4j.Logger;
 
@@ -46,8 +46,9 @@ public class SAAlgorithm {
 
 	private Cluster _cluster;
 	private TopologyDetails _topologyDetail;
-	private final double INITAL_TEMP = 0.8;
+	private final double INITIAL_TEMP = 0.8;
 	private final int MAX_STEP = 10;
+
 
 	public void SAAlgorithm(Cluster cluster, TopologyDetails topologyDetail) {
 		_cluster = new Cluster();
@@ -64,15 +65,11 @@ public class SAAlgorithm {
 	}
 
 	public Map<ExecutorDetails, WorkerSlot> run() {
-		// TODO can allow for certain constraints by the user
-
-		Map<ExecutorDetails, WorkerSlot> assignment = _run*();
-
+		Map<ExecutorDetails, WorkerSlot> assignment = _run();
 		if(assignment != null) 
 			return assignment;
 		else 
 			logger.info("SAAlgortithm wasn't able to compute an assignemt\n");
-
 		return null;
 	}
 
@@ -82,17 +79,17 @@ public class SAAlgorithm {
 
 		for(int i = 0; i < 5; ++i) {
 			double temp = INITIAL_TEMP;
+			double currUtil = 0;
 			Map<ExecutorDetails, WorkerSlot> currState;
 			currState = initApp();
 			if(currState == null) continue;
-			double currUtil = 0;
 			
 			for(int k = 0; k < MAX_STEP; ++k) {
 				Map<ExecutorDetails, WorkerSlot> newState;
+				newState = genStateApp();	
 				double newUtil = computeUtil();
 				double r = Math.random(); // TODO can be changed to threshold
-				newState = genStateApp();	
-				
+
 				if(transition(currUtil, newUtil, temp) > r) {
 					currState = newState;
 					currUtil = newUtil;
@@ -111,8 +108,8 @@ public class SAAlgorithm {
 	}
 
 	private Map<ExecutorDetails, WorkerSlot> initApp() {
-		Map<List<ExecutorDetails>, String> execToComp=cluster.getNeedsSchedulingExecutorToComponents(topologyDetail);
-		Map<ExecutorDetails, WorkerSlot> initState=new Map<ExecutorDetails, WorkerSlot>();
+		Map<List<ExecutorDetails, String> execToComp = _cluster.getNeedsSchedulingExecutorToComponents(_topologyDetail);
+		Map<ExecutorDetails, WorkerSlot> initState = new HashMap<ExecutorDetails, WorkerSlot>();
 		List<WorkerSlot> assignableSlots = _cluster.getAssignableSlots();
 		for( List<ExecutorDetails> listExec : execToComp.keySet()) {
 			for(ExecutorDetails exec : listExec) {
@@ -122,7 +119,7 @@ public class SAAlgorithm {
 					initState.put(exec, w);		// check if we need 'new' call
 				}
 				else {
-					logger.info("IN INITAPP: Assignable slots ran out!!");
+					logger.info("IN InitApp(): Assignable slots ran out!!");
 					return null;
 				}
 			}
@@ -145,6 +142,7 @@ public class SAAlgorithm {
 	}
 
 	private double computeUtil() {
+				
 
 	}
 
@@ -152,17 +150,13 @@ public class SAAlgorithm {
 		if(newUtil > oldUtil)
 			return 1.0;
 		else
-			return Math.pow(Math.E, (oldUtil - newUtil)/temp);
+			return Math.pow(Math.E, (double)(oldUtil - newUtil)/temp);
 	}
 
 	private _____ networkSA() {
 
 	}
 }
-
-
-
-
 
 
 
