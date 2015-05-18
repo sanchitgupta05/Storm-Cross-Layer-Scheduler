@@ -39,8 +39,8 @@ public class Pair<L,R> {
 		_key = key;
 		_value = value;
 	}
-	public void updateKey(L key) { _key = key;}
-	public void updateValue(R value) {_value = value;}
+	public void updateKey(L key) { _key = key; }
+	public void updateValue(R value) { _value = value; }
 }
 
 

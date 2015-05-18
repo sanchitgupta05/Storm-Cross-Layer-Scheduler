@@ -29,7 +29,6 @@ import java.util.Collection;
 
 import org.apache.log4j.Logger;
 
-import backtype.storm.scheduler.crosslayerscheduler.Pair;
 import backtype.storm.scheduler.IScheduler;
 import backtype.storm.scheduler.Topologies;
 import backtype.storm.scheduler.TopologyDetails;
@@ -37,8 +36,11 @@ import backtype.storm.scheduler.WorkerSlot;
 import backtype.storm.scheduler.ExecutorDetails;
 import backtype.storm.scheduler.Cluster;
 import backtype.storm.scheduler.SupervisorDetails;
-import backtype.storm.scheduler.crosslayerscheduler.SAAlgorithm;
+
 import backtype.storm.generated.*;
+
+import backtype.storm.scheduler.crosslayerscheduler.SAAlgorithm;
+import backtype.storm.scheduler.crosslayerscheduler.Pair;
 
 public class CrossLayerScheduler implements IScheduler {
 
