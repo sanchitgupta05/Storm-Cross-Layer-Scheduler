@@ -15,14 +15,15 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-package backtype.storm.scheduler;
+package backtype.storm.scheduler.crosslayerscheduler;
+
 
 public class Pair<L,R> {
 
 	private L _key;
 	private R _value;
 
-	public Pair<L,R>(L key,R value) {
+	public Pair(L key,R value) {
 		_key = key;
 		_value = value;
 	}
